@@ -18,6 +18,8 @@ spring:
         max-active: 8
         max-wait: 10ms
 server:
+  servlet:
+    context-path: /contract
   port: 20004
 security:
   oauth2:
@@ -55,6 +57,7 @@ logging:
 #注册中心
 eureka:
   client:
+    enabled: false
     service-url:
       defaultZone: http://localhost:10001/eureka
   instance:
