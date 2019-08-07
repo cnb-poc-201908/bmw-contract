@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/kenny")
-public class DemoController {
+public class ContractController {
 
 	@GetMapping(value = "lee", produces = "application/json")
 	public String helloWorld() {
