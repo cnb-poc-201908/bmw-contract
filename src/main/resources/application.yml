@@ -52,6 +52,7 @@ eureka:
     instance-id: ${spring.application.name}:${server.port}
   environment: dev
 
+swagger.enabled: true
 
 ---
 spring:
@@ -92,6 +93,8 @@ eureka:
     prefer-ip-address: true
     instance-id: ${spring.application.name}:${server.port}
   environment: sit
+
+swagger.enabled: true
 
 security:
   oauth2:
