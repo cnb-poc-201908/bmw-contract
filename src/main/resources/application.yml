@@ -83,7 +83,7 @@ spring:
         max-wait: 10ms
 server:
   servlet:
-    context-path: /stock
+    context-path: /contract
   port: 20004
 
 # 服务管理配置
