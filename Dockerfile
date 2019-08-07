@@ -5,7 +5,7 @@ FROM registry.cn-beijing.aliyuncs.com/bmwpoc/jdk8
 ENV TZ Asia/Shanghai
 
 # The application's jar file
-ARG JAR_FILE=target/bmw-stock.jar
+ARG JAR_FILE=target/bmw-contract.jar
 
 # Add the application's jar to the container
 ADD ${JAR_FILE} app.jar
