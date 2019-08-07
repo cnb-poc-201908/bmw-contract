@@ -10,10 +10,10 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.bmw</groupId>
-	<artifactId>bmw-stock</artifactId>
+	<artifactId>bmw-contract</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>bmw-stock</name>
-	<description>Stock service of BMW POC</description>
+	<name>bmw-contract</name>
+	<description>Contract service of BMW POC</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -181,7 +181,7 @@
 	</dependencyManagement>
 
 	<build>
-		<finalName>bmw-stock</finalName>
+		<finalName>bmw-contract</finalName>
 		<!-- 打包时包含properties、xml -->
 		<resources>
 			<resource>
