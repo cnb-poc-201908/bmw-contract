@@ -5,7 +5,7 @@ spring:
 spring:
   profiles: local
   application:
-    name: bmw-stock
+    name: bmw-contract
   redis:
     database: 1
     host: 112.126.99.2
@@ -57,7 +57,6 @@ logging:
 #注册中心
 eureka:
   client:
-    enabled: false
     service-url:
       defaultZone: http://localhost:10001/eureka
   instance:
@@ -72,7 +71,7 @@ swagger.enabled: true
 spring:
   profiles: k8s
   application:
-    name: bmw-stock
+    name: bmw-contract
   redis:
     database: 1
     host: 112.126.99.2
