@@ -61,9 +61,6 @@ public class BasicInfo {
 	// 装饰
 	private String trims;
 
-	// 进程代码
-	private String processCode;
-
 	// 发票总金额
 	private String InvoiceTotal;
 
@@ -225,14 +222,6 @@ public class BasicInfo {
 
 	public void setTrims(String trims) {
 		this.trims = trims;
-	}
-
-	public String getProcessCode() {
-		return processCode;
-	}
-
-	public void setProcessCode(String processCode) {
-		this.processCode = processCode;
 	}
 
 	public String getInvoiceTotal() {
