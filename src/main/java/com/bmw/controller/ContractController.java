@@ -22,7 +22,7 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/contracts")
-@Api(description = "BMW微服务平台合同管理接口")
+@Api("BMW微服务平台合同管理接口")
 public class ContractController {
 
 	private static Logger logger = LoggerFactory.getLogger(ContractController.class);
