@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +23,7 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController("Contract endpoints")
 @RequestMapping("/contracts")
-@Api("BMW微服务平台合同管理接口")
+@Api(description = "合同管理接口")
 public class ContractController {
 
 	private static Logger logger = LoggerFactory.getLogger(ContractController.class);
@@ -45,15 +46,28 @@ public class ContractController {
     	return response;
 	}
 
-	@PutMapping(value = "/{contractId}", produces = "application/json")
+	@PostMapping(value = "/{contractId}", produces = "application/json")
 	@ApiOperation(value = "创建合同")
 	public RestResponse<Object> createContract(
 			@RequestBody Contract conntract,
-			@PathVariable(value = "contractId", required = false) String contractId) {
+			@PathVariable(value = "contractId", required = true) String contractId) {
 
 		RestResponse<Object> response = new RestResponse<>();
 		logger.info("enter createContract with param contractId:{}", contractId);
 		response.setCode(contractService.createContract(contractId, conntract));
+		return response;
+	}
+
+	@PutMapping(value = "/{contractId}/{contractStatus}/{processCode}", produces = "application/json")
+	@ApiOperation(value = "更新合同状态")
+	public RestResponse<Object> updateContractStatus(
+			@PathVariable(value = "contractId", required = true) String contractId,
+			@PathVariable(value = "contractStatus", required = true) String contractStatus,
+			@PathVariable(value = "processCode", required = true) String processCode) {
+
+		RestResponse<Object> response = new RestResponse<>();
+		logger.info("enter updateContractStatus with param contractId:{}", contractId);
+		response.setCode(contractService.updateContractStatus(contractId, contractStatus, processCode));
 		return response;
 	}
 }
