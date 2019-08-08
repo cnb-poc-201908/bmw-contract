@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bmw.common.BMWPocConstants;
 import com.bmw.model.Contract;
-import com.bmw.model.CustomerInfo;
 
 @Service
 public class ContractService {
@@ -16,6 +16,17 @@ public class ContractService {
 	public List<Contract> getPreContractList(String dealerId, String regionId, String groupId, String contractStatus) {
 
 		return contractList;
+	}
+
+
+	public int createContract(String contractId, Contract contractForm) {
+		int result = BMWPocConstants.REST_SUCCESS_CODE;
+		for(Contract contract : contractList) {
+			if(contractId != null && contractId.equals(contract.getContractId())) {
+				contract.setContractStatus(BMWPocConstants.CONTRACT_STATUS_CREATED);
+			}
+		}
+		return result;
 	}
 
 }

@@ -38,7 +38,7 @@ public class SwaggerConfig {
 	//设置api信息
 		private ApiInfo apiInfo() {
 			return new ApiInfoBuilder()
-					.title("BMW Contract service ：swagger2 API Document")
+					.title("BMW PoC Platform: Contract service")
 					.description("BMWPOC")
 					// 作者信息
 					.contact(new Contact("BMWPOC","",""))
