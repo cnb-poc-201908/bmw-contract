@@ -15,7 +15,7 @@ import com.bmw.model.Contract;
 import com.bmw.service.ContractService;
 
 @RestController
-@RequestMapping("/pre-contracts")
+@RequestMapping("/contracts")
 public class ContractController {
 
 	private static Logger logger = LoggerFactory.getLogger(ContractController.class);
@@ -27,10 +27,11 @@ public class ContractController {
 	public RestResponse<List<Contract>> getPreContract(
 			@RequestParam(value = "dealerId", required = false) String dealerId,
 			@RequestParam(value = "regionId", required = false) String regionId,
-			@RequestParam(value = "groupId", required = false) String groupId) {
+			@RequestParam(value = "groupId", required = false) String groupId,
+			@RequestParam(value = "contractStatus", required = false) String contractStatus) {
 
 		logger.info("get ungenerated contract list");
-		List<Contract> contractList = contractService.getcontractList(dealerId, regionId, groupId);
+		List<Contract> contractList = contractService.getPreContractList(dealerId, regionId, groupId,contractStatus);
 		RestResponse<List<Contract>> response = new RestResponse<>();
 		response.setData(contractList);
     	return response;
