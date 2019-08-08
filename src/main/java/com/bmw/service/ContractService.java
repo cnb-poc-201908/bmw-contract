@@ -32,7 +32,7 @@ public class ContractService {
 					.collect(Collectors.toList());
 		}
 		if (StringUtils.isNotBlank(contractStatus)) {
-			source = source.stream().filter((Contract contract) -> contract.getContractStatus().equals(groupId))
+			source = source.stream().filter((Contract contract) -> contract.getContractStatus().equals(contractStatus))
 					.collect(Collectors.toList());
 		}
 
