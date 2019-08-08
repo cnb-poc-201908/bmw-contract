@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.bmw.common.BMWPocConstants;
 import com.bmw.model.Contract;
-import com.bmw.model.CustomerInfo;
 
 @Service
 public class ContractService {
