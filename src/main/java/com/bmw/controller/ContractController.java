@@ -20,7 +20,7 @@ import com.bmw.service.ContractService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@RestController
+@RestController("Contract endpoints")
 @RequestMapping("/contracts")
 @Api("BMW微服务平台合同管理接口")
 public class ContractController {
