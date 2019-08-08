@@ -10,7 +10,7 @@ public class Contract {
 	// 进程代码
 	private String processCode;
 
-	// 合同状态
+	// 合同状态 I:invoice已开票 O:未创建 C:已创建
 	private String contractStatus;
 
 	private BasicInfo basicInfo;
@@ -76,4 +76,15 @@ public class Contract {
 	public void setComments(String comments) {
 		this.comments = comments;
 	}
+
+	public Contract(String contractId, String processCode, String contractStatus) {
+		this.contractId = contractId;
+		this.processCode = processCode;
+		this.contractStatus = contractStatus;
+	}
+
+	public Contract() {
+
+	}
+
 }

@@ -14,14 +14,7 @@ public class ContractService {
 	@Autowired
 	private List<Contract> contractList;
 
-	public List<Contract> getcontractList(String dealerId, String regionId, String groupId) {
-
-		CustomerInfo cusInfo = new CustomerInfo();
-		cusInfo.setCustomerName("Li Zheng Bang");
-
-		Contract contract = new Contract();
-		contract.setCustomerInfo(cusInfo);
-		contractList.add(contract);
+	public List<Contract> getPreContractList(String dealerId, String regionId, String groupId, String contractStatus) {
 
 		return contractList;
 	}
@@ -31,7 +24,7 @@ public class ContractService {
 		int result = BMWPocConstants.REST_SUCCESS_CODE;
 		for(Contract contract : contractList) {
 			if(contractId != null && contractId.equals(contract.getContractId())) {
-				contract.setContractStatus(BMWPocConstants.CONTRACT_STATUS__CREATED);
+				contract.setContractStatus(BMWPocConstants.CONTRACT_STATUS_CREATED);
 			}
 		}
 		return result;
