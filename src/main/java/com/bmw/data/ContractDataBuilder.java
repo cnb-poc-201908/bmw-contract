@@ -27,10 +27,6 @@ public class ContractDataBuilder {
 	private static String dateString = DateUtil.dateToBasicISODate(now);
 	private static String[] salesPersonId = new String[] { "S023933", "S065754", "S066778" };
 
-	private ContractDataBuilder() {
-
-	}
-
 	public static List<Contract> buildcontractList() {
 		List<Contract> contractList = getInitContractList();
 		List<CustomerInfo> cInfoList = getCustomerInfoList();
@@ -45,6 +41,14 @@ public class ContractDataBuilder {
 			c.setBasicInfo(bInfo);
 		}
 
+		//-------------------方弘文 DL-10006661------------------
+		for (String status : contractStatus) {
+			Contract c = createNewContract();
+			c.setProcessCode(status);
+			c.setContractStatus(status);			
+			contractList.add(0,c);
+		}
+		
 		return contractList;
 	}
 
@@ -142,5 +146,47 @@ public class ContractDataBuilder {
 		}
 
 		return cList;
+	}
+	
+	private static Contract createNewContract() {
+		Contract cSpec = new Contract();
+		
+		cSpec.setDealerId(dealerIds[0]);
+		cSpec.setDealerName(dealerNames[0]);
+		cSpec.setGroupId(groupIds[0]);
+		cSpec.setGroupName(groupNames[0]);
+		cSpec.setRegionId(regionIds[0]);
+		cSpec.setRegionName(regionNames[0]);
+		cSpec.setContractId("CT20190804334112");
+		
+		CustomerInfo cusInfoSpec = new CustomerInfo();
+		// 客户ID
+		cusInfoSpec.setCustomerId("CID023933");
+		// 客户姓名
+		cusInfoSpec.setCustomerName("方弘文");
+		// 客户地址
+		cusInfoSpec.setCustomerAddress("北京市丰台区西罗园南里");
+		// 客户联系方式
+		cusInfoSpec.setCustomerContact("15827533242");
+		cSpec.setCustomerInfo(cusInfoSpec);
+		
+		BasicInfo basInfoSpec = new BasicInfo();
+		// 订单号 orderNumber
+		basInfoSpec.setOrderNumber("O000000000111");
+		// 订单日期 orderDate
+		basInfoSpec.setOrderDate(DateUtil.dateToString(now.minusDays(8)));
+		// 发票账户 invoiceNumber
+		basInfoSpec.setInvoiceNumber("I0045678336");
+		// 车架号 chassisNumber DUX20190802TEST01
+		basInfoSpec.setChassisNumber("DUX20190204TEST21");
+		// 销售员ID salesPersonId
+		basInfoSpec.setSalesPersonId(salesPersonId[0]);
+		// 预计交付日期 deliveryDate
+		basInfoSpec.setDeliveryDate(DateUtil.dateToString(now.minusDays(3)));
+		// 发票总金额 InvoiceTotal
+		basInfoSpec.setInvoiceTotal(450000d);
+		cSpec.setBasicInfo(basInfoSpec);
+		
+		return cSpec;
 	}
 }
