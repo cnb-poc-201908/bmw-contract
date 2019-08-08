@@ -13,6 +13,16 @@ import com.bmw.utils.DateUtil;
 import com.github.javafaker.Faker;
 
 public class ContractDataBuilder {
+	private static String[] dealerIds = new String[] { "DL-10006661", "D-10006662", "D-10006663", "D-10006664" };
+	private static String[] groupIds = new String[] { "GP-10001", "GP-10002", "GP-10003" };
+	private static String[] regionIds = new String[] { "RG-10001", "RG-10002" };
+	private static String[] dealerNames = new String[] { "北京京宝行汽车服务有限公司", "北京博瑞宝汽车销售服务有限公司", "深圳博瑞宝汽车销售服务有限公司",
+			"广州博瑞宝汽车销售服务有限公司" };
+	private static String[] groupNames = new String[] { "京宝行集团", "博瑞宝集团", "宝马销售集团" };
+	private static String[] regionNames = new String[] { "华北区", "华南区" };
+
+	private static String[] contractStatus = new String[] { "I", "C", "O" };
+
 	private static LocalDate now = LocalDate.now();
 	private static String dateString = DateUtil.dateToBasicISODate(now);
 	private static String[] salesPersonId = new String[] { "S023933", "S065754", "S066778" };
@@ -41,7 +51,7 @@ public class ContractDataBuilder {
 	private static List<BasicInfo> getBasicInfoList() {
 		List<BasicInfo> bInfoList = new ArrayList<BasicInfo>();
 
-		for (int i = 0; i < BMWPocConstants.CONTRACT_MOCK_LENGTH * 3; i++) {
+		for (int i = 0; i < BMWPocConstants.CONTRACT_MOCK_LENGTH * 12; i++) {
 			BasicInfo b = new BasicInfo();
 			// 订单号 orderNumber
 			b.setOrderNumber("O" + String.format("%012d", 3537 * (i + 1)));
@@ -69,7 +79,7 @@ public class ContractDataBuilder {
 		List<CustomerInfo> cInfoList = new ArrayList<CustomerInfo>();
 		Faker faker = new Faker(new Locale("zh-CN"));
 
-		for (int i = 0; i < BMWPocConstants.CONTRACT_MOCK_LENGTH * 3; i++) {
+		for (int i = 0; i < BMWPocConstants.CONTRACT_MOCK_LENGTH * 12; i++) {
 			CustomerInfo c = new CustomerInfo();
 			// 客户ID
 			c.setCustomerId("CID" + String.format("%06d", 537 * (i + 1)));
@@ -89,13 +99,45 @@ public class ContractDataBuilder {
 		// mock init contract list
 		List<Contract> cList = new ArrayList<>();
 
-		String[] contractStatus = new String[] { "I", "C", "O" };
+		for (int k = 0; k < dealerIds.length; k++) {
+			for (int j = 0; j < contractStatus.length; j++) {
+				for (int i = 0; i < BMWPocConstants.CONTRACT_MOCK_LENGTH; i++) {
+					String contractId = "CT" + dateString + String.format("%06d", 1437 * (i + j + k + 1));
+					String processCode = contractStatus[j];
 
-		for (String cStatus : contractStatus) {
-			for (int i = 0; i < BMWPocConstants.CONTRACT_MOCK_LENGTH; i++) {
-				String contractNumber = "CT" + dateString + String.format("%06d", 437 * (i + 1));
-				String processStatus = cStatus;
-				cList.add(new Contract(contractNumber, processStatus, cStatus));
+					Contract c = new Contract();
+					c.setContractId(contractId);
+					c.setProcessCode(processCode);
+					c.setContractStatus(contractStatus[j]);
+
+					c.setDealerId(dealerIds[k]);
+					c.setDealerName(dealerNames[k]);
+
+					if (k == 0 || k == 1) {
+						c.setGroupId(groupIds[0]);
+						c.setGroupName(groupNames[0]);
+
+						c.setRegionId(regionIds[0]);
+						c.setRegionName(regionNames[0]);
+					}
+
+					if (k == 2) {
+						c.setGroupId(groupIds[1]);
+						c.setGroupName(groupNames[1]);
+
+						c.setRegionId(regionIds[1]);
+						c.setRegionName(regionNames[1]);
+					}
+
+					if (k == 3) {
+						c.setGroupId(groupIds[2]);
+						c.setGroupName(groupNames[2]);
+
+						c.setRegionId(regionIds[1]);
+						c.setRegionName(regionNames[1]);
+					}
+					cList.add(c);
+				}
 			}
 		}
 
