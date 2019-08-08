@@ -24,6 +24,19 @@ public class ContractService {
 		for(Contract contract : contractList) {
 			if(contractId != null && contractId.equals(contract.getContractId())) {
 				contract.setContractStatus(BMWPocConstants.CONTRACT_STATUS_CREATED);
+				contract.setProcessCode(BMWPocConstants.CONTRACT_STATUS_CREATED);
+			}
+		}
+		return result;
+	}
+
+	public int updateContractStatus(String contractId,
+				String contractStatus, String processCode) {
+		int result = BMWPocConstants.REST_SUCCESS_CODE;
+		for(Contract contract : contractList) {
+			if(contractId != null && contractId.equals(contract.getContractId())) {
+				contract.setContractStatus(contractStatus);
+				contract.setProcessCode(processCode);
 			}
 		}
 		return result;
