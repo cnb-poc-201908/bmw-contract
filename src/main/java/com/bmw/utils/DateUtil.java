@@ -50,6 +50,12 @@ public class DateUtil {
     	DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE;
     	return formatter.format(date);
     }
+    
+    //Basic ISO date '20111203'
+    public static String dateToBasicISODate(LocalDate date) {
+    	DateTimeFormatter formatter = DateTimeFormatter.BASIC_ISO_DATE;
+    	return formatter.format(date);
+    }
 
     public static int compareDateString(String firstDateString, String secondDateString) {
     	Date firstDate = stringToDate(firstDateString);

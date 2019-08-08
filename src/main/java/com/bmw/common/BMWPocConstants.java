@@ -14,4 +14,6 @@ public class BMWPocConstants {
 	public static final Integer REPAIRORDER_PAGE_SIZE = 200;
 	public static final String DEFAULT_JULIAN_DATE = "2458000";
 	public static final String REDIS_CONTRACT_LIST_KEY = "contractList";
+	public static final Integer CONTRACT_MOCK_LENGTH = 10;
+	
 }

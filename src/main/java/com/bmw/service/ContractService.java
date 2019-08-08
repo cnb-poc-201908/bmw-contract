@@ -13,15 +13,20 @@ public class ContractService {
 	@Autowired
 	private List<Contract> contractList;
 
-	public List<Contract> getcontractList(String dealerId, String regionId, String groupId) {
-		
-		CustomerInfo cusInfo = new CustomerInfo();
-		cusInfo.setCustomerName("Li Zheng Bang");
-		
-		Contract contract = new Contract();
-		contract.setCustomerInfo(cusInfo);
-		contractList.add(contract);
-		
+//	public List<Contract> getcontractList(String dealerId, String regionId, String groupId) {
+//
+//		CustomerInfo cusInfo = new CustomerInfo();
+//		cusInfo.setCustomerName("Li Zheng Bang");
+//
+//		Contract contract = new Contract();
+//		contract.setCustomerInfo(cusInfo);
+//		contractList.add(contract);
+//
+//		return contractList;
+//	}
+
+	public List<Contract> getPreContractList(String dealerId, String regionId, String groupId, String contractStatus) {
+
 		return contractList;
 	}
 

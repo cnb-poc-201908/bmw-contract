@@ -70,7 +70,7 @@ public class RestConfig implements WebMvcConfigurer {
 
 	@Bean
 	@Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
-	public List<Contract> contracts() throws JsonParseException, JsonMappingException, IOException {
+	public List<Contract> contractList() throws JsonParseException, JsonMappingException, IOException {
 		ValueOperations<String, String> ops = redisTemplate.opsForValue();
 		ObjectMapper objectMapper = new ObjectMapper();
 		objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
