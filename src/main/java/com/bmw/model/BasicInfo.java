@@ -62,7 +62,7 @@ public class BasicInfo {
 	private String trims;
 
 	// 发票总金额
-	private String InvoiceTotal;
+	private Double InvoiceTotal;
 
 	public String getContactName() {
 		return contactName;
@@ -224,11 +224,11 @@ public class BasicInfo {
 		this.trims = trims;
 	}
 
-	public String getInvoiceTotal() {
+	public Double getInvoiceTotal() {
 		return InvoiceTotal;
 	}
 
-	public void setInvoiceTotal(String invoiceTotal) {
+	public void setInvoiceTotal(Double invoiceTotal) {
 		InvoiceTotal = invoiceTotal;
 	}
 
