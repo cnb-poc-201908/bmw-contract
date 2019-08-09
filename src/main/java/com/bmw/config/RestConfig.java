@@ -1,11 +1,8 @@
 package com.bmw.config;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
@@ -22,18 +19,13 @@ import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.bmw.common.BMWPocConstants;
-import com.bmw.controller.RedisAddDataController;
 import com.bmw.model.Contract;
-import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Configuration
 public class RestConfig implements WebMvcConfigurer {
-
-	private static Logger logger = LoggerFactory.getLogger(RedisAddDataController.class);
 
 	@Override
 	public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
@@ -44,8 +36,6 @@ public class RestConfig implements WebMvcConfigurer {
 
 	@Autowired
 	RestTemplate restTemplate;
-	@Autowired
-	RedisTemplate<String, String> redisTemplate;
 
 	@Bean
 	public CorsFilter corsFilter() {
@@ -70,7 +60,7 @@ public class RestConfig implements WebMvcConfigurer {
 
 	@Bean
 	@Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
-	public List<Contract> contractList() throws JsonParseException, JsonMappingException, IOException {
+	public List<Contract> contractList(RedisTemplate<String, String> redisTemplate) throws IOException {
 		ValueOperations<String, String> ops = redisTemplate.opsForValue();
 		ObjectMapper objectMapper = new ObjectMapper();
 		objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);

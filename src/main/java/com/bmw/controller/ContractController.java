@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bmw.client.TemplateClient;
 import com.bmw.entity.response.RestResponse;
 import com.bmw.model.Contract;
+import com.bmw.model.ContractTemplate;
 import com.bmw.service.ContractService;
 
 import io.swagger.annotations.Api;
@@ -23,13 +25,16 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController("Contract endpoints")
 @RequestMapping("/contracts")
-@Api(description = "合同管理接口")
+@Api("合同管理接口")
 public class ContractController {
 
 	private static Logger logger = LoggerFactory.getLogger(ContractController.class);
 
 	@Autowired
 	private ContractService contractService;
+
+	@Autowired
+	private TemplateClient templateClient;
 
 	@GetMapping(value = "", produces = "application/json")
 	@ApiOperation(value = "合同列表信息查询")
@@ -55,6 +60,20 @@ public class ContractController {
 		RestResponse<Object> response = new RestResponse<>();
 		logger.info("enter createContract with param contractId:{}", contractId);
 		response.setCode(contractService.createContract(contractId, conntract));
+		return response;
+	}
+
+	@GetMapping(value = "/{contractId}/{templateId}/print", produces = "application/json")
+	@ApiOperation(value = "打印合同")
+	public RestResponse<ContractTemplate> print(
+			@PathVariable(value = "contractId", required = true) String contractId,
+			@PathVariable(value = "templateId", required = true) String templateId) {
+
+		String json = templateClient.getTemplate(templateId);
+		logger.info("template json:{}", json);
+
+		RestResponse<ContractTemplate> response = new RestResponse<>();
+		response.setData(contractService.fillDataWithTemplate(contractId, templateId));
 		return response;
 	}
 

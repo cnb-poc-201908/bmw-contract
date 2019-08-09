@@ -13,6 +13,11 @@ import com.bmw.utils.DateUtil;
 import com.github.javafaker.Faker;
 
 public class ContractDataBuilder {
+
+	private ContractDataBuilder() {
+
+	}
+
 	private static String[] dealerIds = new String[] { "DL-10006661", "D-10006662", "D-10006663", "D-10006664" };
 	private static String[] groupIds = new String[] { "GP-10001", "GP-10002", "GP-10003" };
 	private static String[] regionIds = new String[] { "RG-10001", "RG-10002" };
@@ -45,15 +50,15 @@ public class ContractDataBuilder {
 		for (String status : contractStatus) {
 			Contract c = createNewContract();
 			c.setProcessCode(status);
-			c.setContractStatus(status);			
+			c.setContractStatus(status);
 			contractList.add(0,c);
 		}
-		
+
 		return contractList;
 	}
 
 	private static List<BasicInfo> getBasicInfoList() {
-		List<BasicInfo> bInfoList = new ArrayList<BasicInfo>();
+		List<BasicInfo> bInfoList = new ArrayList<>();
 
 		for (int i = 0; i < BMWPocConstants.CONTRACT_MOCK_LENGTH * 12; i++) {
 			BasicInfo b = new BasicInfo();
@@ -80,7 +85,7 @@ public class ContractDataBuilder {
 	}
 
 	private static List<CustomerInfo> getCustomerInfoList() {
-		List<CustomerInfo> cInfoList = new ArrayList<CustomerInfo>();
+		List<CustomerInfo> cInfoList = new ArrayList<>();
 		Faker faker = new Faker(new Locale("zh-CN"));
 
 		for (int i = 0; i < BMWPocConstants.CONTRACT_MOCK_LENGTH * 12; i++) {
@@ -147,10 +152,10 @@ public class ContractDataBuilder {
 
 		return cList;
 	}
-	
+
 	private static Contract createNewContract() {
 		Contract cSpec = new Contract();
-		
+
 		cSpec.setDealerId(dealerIds[0]);
 		cSpec.setDealerName(dealerNames[0]);
 		cSpec.setGroupId(groupIds[0]);
@@ -158,7 +163,7 @@ public class ContractDataBuilder {
 		cSpec.setRegionId(regionIds[0]);
 		cSpec.setRegionName(regionNames[0]);
 		cSpec.setContractId("CT20190804334112");
-		
+
 		CustomerInfo cusInfoSpec = new CustomerInfo();
 		// 客户ID
 		cusInfoSpec.setCustomerId("CID023933");
@@ -169,7 +174,7 @@ public class ContractDataBuilder {
 		// 客户联系方式
 		cusInfoSpec.setCustomerContact("15827533242");
 		cSpec.setCustomerInfo(cusInfoSpec);
-		
+
 		BasicInfo basInfoSpec = new BasicInfo();
 		// 订单号 orderNumber
 		basInfoSpec.setOrderNumber("O000000000111");
@@ -186,7 +191,7 @@ public class ContractDataBuilder {
 		// 发票总金额 InvoiceTotal
 		basInfoSpec.setInvoiceTotal(450000d);
 		cSpec.setBasicInfo(basInfoSpec);
-		
+
 		return cSpec;
 	}
 }

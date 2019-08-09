@@ -1,5 +1,6 @@
 package com.bmw.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class RedisAddDataController {
 	RedisTemplate<String, String> redisTemplate;
 
 	@GetMapping(value = "", produces = "application/json")
-	public List<Contract> helloWorld() throws Exception {
+	public List<Contract> helloWorld() throws IOException {
 
 		// start set data into redis
 		ValueOperations<String, String> ops = redisTemplate.opsForValue();
