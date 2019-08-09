@@ -61,6 +61,7 @@ eureka:
       defaultZone: http://localhost:10001/eureka
   instance:
     prefer-ip-address: true
+    ipAddress: 127.0.0.1
 #    securePortEnabled: true
     instance-id: ${spring.application.name}:${server.port}
   environment: dev
@@ -107,6 +108,10 @@ management:
     export:
       prometheus:
         enabled: true
+
+## 日志设置配置信息
+logging:
+  config: classpath:logback-boot_k8s.xml
 
 #注册中心
 eureka:
